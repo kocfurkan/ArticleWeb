@@ -14,12 +14,17 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/shop-homepage.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
+    <style>
+        a, a:hover a:focus, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+          
+    </style>
 
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2b3744; border:none" role="navigation">
         <div class="container">
@@ -37,23 +42,23 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Yönetim</a>
+                        <a href="#">Admin</a>
                     </li>
                     <li>
-                        <a href="#">En Beğenilenler</a>
+                        <a href="#">Most Liked</a>
                     </li>
                     <li>
-                        <a href="#">Son Yazılanlar</a>
+                        <a href="#">Last Articles</a>
                     </li>
                     <li>
-                        <a href="#">Hakkımızda</a>
+                        <a href="#">About</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in" style="margin-right:5px"></span>Giriş</a></li>
-                    <li><a href="#"> <span class="glyphicon glyphicon-user " style="margin-right:5px"></span>Üye Ol</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in" style="margin-right:5px"></span>Log In</a></li>
+                    <li><a href="#"> <span class="glyphicon glyphicon-user " style="margin-right:5px"></span>Register</a></li>
                     <li><a href="#">Adınız</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out" style="margin-right:5px"></span>Çıkış</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out" style="margin-right:5px"></span>Log Out</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -71,25 +76,27 @@
 
         <!-- Footer -->
         <footer>
+            
             <div class="row">
-                <div class="col-lg-4" style="margin-top:10px">
-                    <h5 style="margin-top:0px;">Site Haritası</h5>
-                    <ul style="list-style:none; padding:0px">
-                        <li><a href="#">Hakkımızda</a></li>
-                        <li><a href="#">En Beğenilenler</a></li>
-                        <li> <a href="#">Hakkımızda</a></li>
+                <div class="col-lg-4 text-center" style="margin-top:10px" >
+                    <h5 style="margin-top:0px;">Site Map</h5>
+                    <ul style="list-style:none; padding:0px" id="siteharitasi">
+
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Most Liked</a></li>
+                        <li> <a href="#">Last Articles</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
-                    <p>Copyright &copy; Makale 2022 @DateTime.Now.Year</p>
+                <div class="col-lg-4 text-center">
+                    <p>Copyright &copy; ArticlesWeb @DateTime.Now.Year</p>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <h5 style="margin-top:0px;">E-Bülten Üyeliği</h5>
-                    <div class="col-lg-12">
+                    <h5 style="margin-top:0px;">Sign Up For Feed</h5>
+                    <div class="col-lg-12 ">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="E-Posta Adresiniz">
+                            <input type="text" class="form-control" placeholder="Your E-Mail">
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">Üye Ol</button>
+                                <button class="btn btn-primary" type="button">Subscribe</button>
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
