@@ -63,7 +63,7 @@ namespace Makale_DAL
                     UpdateDate = DateTime.Now.AddMinutes(5),
                 };
                 context.Categories.Add(category);
-               
+
 
                 for (int j = 0; j < 3; j++)
                 {
@@ -94,8 +94,10 @@ namespace Makale_DAL
                     }
                     for (int f = 0; f < note.LikeNumber; f++)
                     {
-                        Like like = new Like() { 
-                            User = userList[FakeData.NumberData.GetNumber(1, 6)], };
+                        Like like = new Like()
+                        {
+                            User = userList[FakeData.NumberData.GetNumber(1, 6)],
+                        };
                         note.Likes.Add(like);
                     }
                 }

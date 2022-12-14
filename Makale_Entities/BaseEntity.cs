@@ -17,7 +17,7 @@ namespace Makale_Entities
         public DateTime RegisterationDate { get; set; }
         [Required]
         public DateTime UpdateDate { get; set; }
-        [Required,StringLength(20)]
+        [Required, StringLength(20)]
         public string UpdatedBy { get; set; }
     }
 }

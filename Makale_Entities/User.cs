@@ -15,9 +15,9 @@ namespace Makale_Entities
         public string Surname { get; set; }
         [StringLength(20), Required]
         public string Username { get; set; }
-        [Required,StringLength(50)]
+        [Required, StringLength(50)]
         public string Email { get; set; }
-        [Required,StringLength(20)]
+        [Required, StringLength(20)]
         public string Password { get; set; }
         public bool Active { get; set; }
         public bool Admin { get; set; }
@@ -29,7 +29,7 @@ namespace Makale_Entities
 
         public User()
         {
-            Notes = new List<Note>();   
+            Notes = new List<Note>();
             Comments = new List<Comment>();
             Likes = new List<Like>();
         }

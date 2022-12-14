@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DBCreator.cs" />
+    <Compile Include="DbSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

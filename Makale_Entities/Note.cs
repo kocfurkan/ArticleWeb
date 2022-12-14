@@ -21,7 +21,7 @@ namespace Makale_Entities
         public virtual List<Like> Likes { get; set; }
         public Note()
         {
-            Comments = new List<Comment>();    
+            Comments = new List<Comment>();
             Likes = new List<Like>();
         }
     }

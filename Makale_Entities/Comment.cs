@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Makale_Entities
 {
-    public class Comment:BaseEntity
+    public class Comment : BaseEntity
     {
-        [Required,StringLength(250)]
+        [Required, StringLength(250)]
         public string Text { get; set; }
-        public virtual User User { get; set;}
-        public virtual Note Note { get; set; }  
+        public virtual User User { get; set; }
+        public virtual Note Note { get; set; }
     }
 }

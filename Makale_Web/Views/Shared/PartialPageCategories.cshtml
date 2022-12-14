@@ -1,0 +1,20 @@
+﻿@using Makale_BLL
+@using Makale_Entities
+
+@{
+    CategoryBL ctgBL = new CategoryBL();
+    List<Category> Categories = ctgBL.ReadCategories();
+}
+
+
+<p class="lead">Categories</p>
+<div class="list-group">
+
+    <a href="/Home/Index" class="list-group-item">All</a>
+    @foreach (var category in Categories)
+    {
+        <a href="/Home/Category/@category.Id" class="list-group-item">@category.Title</a>
+    }
+
+
+</div>
