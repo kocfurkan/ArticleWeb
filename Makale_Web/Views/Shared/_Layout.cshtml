@@ -15,11 +15,11 @@
     <link href="~/Content/shop-homepage.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <style>
-        a, a:hover a:focus, a:active {
-            text-decoration: none;
+
+        a, a:hover {
+            text-decoration-color: initial !important;
             color: inherit;
         }
-          
     </style>
 
 </head>
@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ArticleWeb</a>
+                <a class="navbar-brand" href="/Home/Index">ArticleWeb</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,10 +55,10 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in" style="margin-right:5px"></span>Log In</a></li>
-                    <li><a href="#"> <span class="glyphicon glyphicon-user " style="margin-right:5px"></span>Register</a></li>
-                    <li><a href="#">Your Name</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out" style="margin-right:5px"></span>Log Out</a></li>
+                    <li><a href="/Home/Login"><span class="glyphicon glyphicon-log-in" style="margin-right:5px"></span>Sign In</a></li>
+                    <li><a href="/Home/Signup"> <span class="glyphicon glyphicon-user " style="margin-right:5px"></span>Sign Up</a></li>
+                    <li><a href="/Home/Profile">Your Name</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out" style="margin-right:5px"></span>Sign Out</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -76,9 +76,9 @@
 
         <!-- Footer -->
         <footer>
-            
+
             <div class="row">
-                <div class="col-lg-4 text-center" style="margin-top:10px" >
+                <div class="col-lg-4 text-center" style="margin-top:10px">
                     <h5 style="margin-top:0px;">Site Map</h5>
                     <ul style="list-style:none; padding:0px" id="siteharitasi">
 
@@ -103,9 +103,7 @@
                 </div>
             </div>
         </footer>
-
     </div>
-
 </body>
 
 </html>

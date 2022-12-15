@@ -5,18 +5,20 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <style>
     .carousel .item {
-        height: 400px;
+        height: 300px;
     }
 
     .item img {
         position: absolute;
         top: 0;
         left: 0;
-        min-height: 400px;
+        min-height: 300px;
     }
 </style>
+
 <div class="container">
 
     <div class="row">
@@ -68,13 +70,13 @@
                                 <h4>
                                     <a href="#">@item.Title</a>
                                 </h4>
-                                <h6 class="text-right"><span class="glyphicon glyphicon-user"></span>@item.User.Name <br /><span class="glyphicon glyphicon-time">@item.UpdateDate.ToString("dd.MM.yy HH:mm")</span></h6>
+                                <h6 class="text-right"><span class="glyphicon glyphicon-user" style="margin-right:0.3rem"></span>@item.User.Name <br /><span class="glyphicon glyphicon-time">@item.UpdateDate.ToString("dd.MM.yy HH:mm")</span></h6>
 
                                 @if (!string.IsNullOrEmpty(item.Text) && item.Text.Length > 40)
                                 {
                                     <p>
-                                        @item.Text.Substring(0, 40);
-                                        <a href="#" class="btn btn-default btn-xs" >Show All</a>
+                                        @item.Text.Substring(0, 40)...
+                                        <a href="#" class="btn btn-default btn-xs bottom-right">Show All</a>
                                     </p>
                                 }
                                 else
@@ -86,9 +88,9 @@
                                 <hr />
                             </div>
                             <div class="ratings">
-                                <p class="pull-right"><button class="btn btn-primary btn-xs "><span class="glyphicon glyphicon-comment"></span>Comments</button></p>
+                                <p class="pull-right"><button class="btn btn-primary btn-xs "><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
                                 <p>
-                                    <button class="btn btn-primary btn-xs "><span class="glyphicon glyphicon-heart-empty"></span>@item.LikeNumber</button>
+                                    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-heart-empty" style="margin-right:0.3rem"></span>@item.LikeNumber</button>
                                 </p>
                             </div>
                         </div>

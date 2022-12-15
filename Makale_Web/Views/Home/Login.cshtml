@@ -1,0 +1,55 @@
+﻿@model Makale_Entities.ViewModels.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="~/Content/Login-Signup.css" rel="stylesheet" />
+<style>
+    a, a:hover {
+        text-decoration: none !important;
+    }
+</style>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+
+        <div class="main">
+            <br />
+            <h3>Please Log In, or <a href="/Home/Signup">Sign Up</a></h3>
+            @using (Html.BeginForm())
+            {<div class="form-group">
+                    @Html.ValidationSummary(false)
+            <br />
+                    <label for="inputUsernameEmail">Username or email</label>
+                    @Html.TextBoxFor(Model => Model.Username, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+
+                    <a class="pull-right" href="#">Forgot password?</a>
+                    <label for="inputPassword">Password</label>
+                    @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", type = "password" })
+                </div>
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn btn-primary" value="Log In">
+                    Log In
+                </button>}
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("footer").parent().hide();
+    })
+</script>
+

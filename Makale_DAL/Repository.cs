@@ -18,7 +18,7 @@ namespace Makale_DAL
         {
             objSet = db.Set<T>();
         }
-
+        
         //Set<T> is a way of telling that T object will be of type dbsets on our Database Context.
         public int Create(T obj)
         {

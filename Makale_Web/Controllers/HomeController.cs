@@ -1,5 +1,6 @@
 ﻿using Makale_BLL;
 using Makale_Entities;
+using Makale_Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,30 @@ namespace Makale_Web.Controllers
         {
             //A new model is sent to index on this action which has ordering of notes by LikeNumber
             return View("Index", noteBl.ReadNotes().OrderByDescending(x => x.LikeNumber).ToList());
+        }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(LoginModel usr)
+        {
+            return View(usr);
+        }
+        public ActionResult Signup()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Signup(SignupModel registeredusr)
+        {
+            return View(registeredusr);
         }
     }
 }

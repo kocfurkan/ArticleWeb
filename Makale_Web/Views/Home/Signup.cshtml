@@ -1,0 +1,56 @@
+﻿@model Makale_Entities.ViewModels.SignupModel
+@{
+    ViewBag.Title = "Sign Up";}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="~/Content/Login-Signup.css" rel="stylesheet" />
+<style>
+    a, a:hover {
+        text-decoration: none !important;
+    }
+</style>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+
+        <div class="main">
+            <br />
+            <h3 class="text-left"> <b>Sign Up</b></h3>
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @Html.ValidationSummary(false)
+                    <br/>
+                    <label for="Username">Username</label>
+                    @Html.TextBoxFor(Model => Model.Username, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", type = "password" })
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Confirm Password</label>
+                    @Html.TextBoxFor(Model => Model.PasswordConfirm, new { @class = "form-control", type = "password" })
+                </div>
+                <button type="submit" class="btn btn btn-primary pull-right" value="Sign Up">
+                    Sign Up
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("footer").parent().hide();
+    })
+</script>
+
