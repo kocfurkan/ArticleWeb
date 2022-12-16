@@ -54,9 +54,15 @@
     <Compile Include="CategoryBL.cs" />
     <Compile Include="NoteBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponsesBL.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="UserBL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ArticleWeb_Common\ArticleWeb_Common.csproj">
+      <Project>{230768eb-0569-42be-b309-5feb127fe376}</Project>
+      <Name>ArticleWeb_Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Makale_DAL\Makale_DAL.csproj">
       <Project>{c3148f06-5e6c-4fcc-a4fc-e9b67877d0fe}</Project>
       <Name>Makale_DAL</Name>

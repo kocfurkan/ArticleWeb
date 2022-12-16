@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Makale_Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -18,11 +19,19 @@ namespace Makale_DAL
         {
             objSet = db.Set<T>();
         }
-        
+
         //Set<T> is a way of telling that T object will be of type dbsets on our Database Context.
         public int Create(T obj)
         {
             objSet.Add(obj);
+            BaseEntity entObj = obj as BaseEntity;
+            DateTime now = DateTime.Now;
+            if (obj is BaseEntity)
+            {
+                entObj.RegisterationDate = now;
+                entObj.UpdateDate = now;
+                entObj.UpdatedBy = "system";
+            }
             return db.SaveChanges();
         }
 
@@ -43,6 +52,13 @@ namespace Makale_DAL
 
         public int Update(T obj)
         {
+            BaseEntity entObj = obj as BaseEntity;
+
+            if (obj is BaseEntity)
+            {
+                entObj.UpdateDate = DateTime.Now;
+                entObj.UpdatedBy = "system";
+            }
             return db.SaveChanges();
         }
 

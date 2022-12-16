@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_DAL", "Makale_DAL\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_BLL", "Makale_BLL\Makale_BLL.csproj", "{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleWeb_Common", "ArticleWeb_Common\ArticleWeb_Common.csproj", "{230768EB-0569-42BE-B309-5FEB127FE376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{230768EB-0569-42BE-B309-5FEB127FE376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{230768EB-0569-42BE-B309-5FEB127FE376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{230768EB-0569-42BE-B309-5FEB127FE376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{230768EB-0569-42BE-B309-5FEB127FE376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

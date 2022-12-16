@@ -12,6 +12,7 @@ namespace Makale_Web.Controllers
     public class HomeController : Controller
     {
         NoteBL noteBl = new NoteBL();
+        UserBL usrBl = new UserBL();
         // GET: Home
         public ActionResult Index()
         {
@@ -59,16 +60,44 @@ namespace Makale_Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel usr)
         {
+            if (ModelState.IsValid)
+            {
+                ResponsesBL<User> response = usrBl.LogIn(usr);
+                if (response.errors.Count > 0)
+                {
+                    response.errors.ForEach(x => ModelState.AddModelError("", x));
+                    return View(usr);
+                }
+                //A Session is created on login
+                Session["login"] = response.Obj;
+                RedirectToAction("Index");
+            }
             return View(usr);
         }
+
         public ActionResult Signup()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Signup(SignupModel registeredusr)
+        public ActionResult Signup(SignupModel registeringusr)
         {
-            return View(registeredusr);
+            if (ModelState.IsValid)
+            {
+                ResponsesBL<User> response = usrBl.SignUp(registeringusr);
+                if (response.errors.Count > 0)
+                {
+                    response.errors.ForEach(x => ModelState.AddModelError("", x));
+                    return View(registeringusr);
+                }
+                return RedirectToAction("Login");
+            }
+            return View(registeringusr);
+        }
+
+        public ActionResult ActivateUser(Guid ActivationGuid)
+        {
+            return View();
         }
     }
 }
