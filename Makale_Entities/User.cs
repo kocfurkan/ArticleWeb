@@ -17,8 +17,10 @@ namespace Makale_Entities
         public string Username { get; set; }
         [Required, StringLength(50)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please Enter a Valid Username"), StringLength(20)]
+        [Required(ErrorMessage = "Please Enter a Valid Password"), StringLength(20)]
         public string Password { get; set; }
+        [StringLength(20)]
+        public string Avatar { get; set; }
         public bool Active { get; set; }
         public bool Admin { get; set; }
         [Required]

@@ -57,6 +57,15 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DBCreator.cs" />
     <Compile Include="DbSingleton.cs" />
+    <Compile Include="Migrations\202212131115097_InitialCreate.cs" />
+    <Compile Include="Migrations\202212131115097_InitialCreate.designer.cs">
+      <DependentUpon>202212131115097_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212190856327_Added_Image_Prop_To_User.cs" />
+    <Compile Include="Migrations\202212190856327_Added_Image_Prop_To_User.designer.cs">
+      <DependentUpon>202212190856327_Added_Image_Prop_To_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
@@ -73,6 +82,14 @@
       <Project>{6A15ABE4-52B3-405A-A573-A6E1559796D4}</Project>
       <Name>Makale_Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202212131115097_InitialCreate.resx">
+      <DependentUpon>202212131115097_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212190856327_Added_Image_Prop_To_User.resx">
+      <DependentUpon>202212190856327_Added_Image_Prop_To_User.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

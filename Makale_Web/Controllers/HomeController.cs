@@ -70,9 +70,15 @@ namespace Makale_Web.Controllers
                 }
                 //A Session is created on login
                 Session["login"] = response.Obj;
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(usr);
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Signup()
@@ -90,14 +96,69 @@ namespace Makale_Web.Controllers
                     response.errors.ForEach(x => ModelState.AddModelError("", x));
                     return View(registeringusr);
                 }
-                return RedirectToAction("Login");
+                return RedirectToAction("SignupSuccess");
             }
             return View(registeringusr);
         }
 
-        public ActionResult ActivateUser(Guid ActivationGuid)
+        public ActionResult SignupSuccess()
         {
             return View();
         }
+
+        public ActionResult ActivateUser(Guid ActivationGuid)
+        {
+            ResponsesBL<User> response = usrBl.ActivateUser(ActivationGuid);
+            if (response.errors.Count > 0)
+            {
+                TempData["errors"] = response.errors;
+                return RedirectToAction("ActivateUserFailed");
+            }
+
+            return View();
+        }
+        public ActionResult ActivateUserFailed()
+        {
+            List<string> errors = null;
+
+            if (TempData["errors"] != null)
+            {
+                errors = (List<string>)TempData["errors"];
+            }
+            return View(errors);
+        }
+
+        public ActionResult ProfilePage()
+        {
+            User usr = (User)Session["login"];
+            return View(usr);
+        }
+        public ActionResult ProfileEdit()
+        {
+            User usr = (User)Session["login"];
+            return View(usr);
+        }
+        [HttpPost]
+        public ActionResult ProfileEdit(User usr, HttpPostedFile Avatar)
+        {
+            if (Avatar != null && Avatar.ContentType == "image/jpg")
+            {
+                string fileName = $"user_{usr.Id}.{Avatar.ContentType.Split('/')[0]}";
+                Avatar.SaveAs(Server.MapPath($"~/image/{fileName}"));
+                usr.Avatar = fileName;
+            }
+            ResponsesBL<User> result = usrBl.UpdateUser(usr);
+            if (result.errors.Count > 0)
+            {
+                result.errors.ForEach(x => ModelState.AddModelError("", x));
+                return View(result.Obj);
+            }
+            return View(usr);
+        }
+        public ActionResult ProfileDelete()
+        {
+            return View();
+        }
+
     }
 }

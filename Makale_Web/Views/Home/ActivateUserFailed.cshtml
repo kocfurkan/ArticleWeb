@@ -1,0 +1,15 @@
+﻿@model List<String>
+@{
+    ViewBag.Title = "ActivateUserFailed";
+}
+
+<h2>ActivateUserFailed</h2>
+<div class="container">
+    <div class="col-lg-1 col-md-12">
+        @foreach (var item in Model)
+        {
+            <p class="text-danger" style="color: #453C2B !important"> @item</p>
+            <br />
+        }
+    </div>
+</div>

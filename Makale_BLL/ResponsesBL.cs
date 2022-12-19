@@ -10,7 +10,7 @@ namespace Makale_BLL
     public class ResponsesBL<T> where T : class
     {
        public List<String> errors
-        {
+        { 
             get; set;
         }
         public T Obj { get; set; }

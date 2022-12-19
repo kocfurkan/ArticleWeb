@@ -112,6 +112,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Image\Avatar.jpg" />
     <Content Include="Image\ray-plastik-slayt1-320x150.jpg" />
     <Content Include="Image\simple-simple-background-minimalism-black-background-wallpaper-preview.jpg" />
     <Content Include="Image\sunset-minimalist-triangle-sky-wallpaper-preview.jpg" />
@@ -145,6 +146,10 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Home\ActivateUser.cshtml" />
+    <Content Include="Views\Home\ActivateUserFailed.cshtml" />
+    <Content Include="Views\Home\SignupSuccess.cshtml" />
+    <Content Include="Views\Home\ProfilePage.cshtml" />
+    <Content Include="Views\Home\ProfileEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

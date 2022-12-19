@@ -1,0 +1,33 @@
+﻿@model User
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container">
+    <div class="row"><h2>Profile</h2></div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            <img src="~/Image/@Model.Avatar" class="img-circle" style="width:120px; height:120px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="padding-left:10px;">
+            <h3><b>Name</b> : @(Model.Name+" "+Model.Surname)</h3>
+            <h4><b>Username</b> : @Model.Username</h4>
+            <h4><b>Email</b> : @Model.Email</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Options
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="/Home/ProfileEdit">Edit</a></li>
+                    <li><a href="/Home/ProfileDelete">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
