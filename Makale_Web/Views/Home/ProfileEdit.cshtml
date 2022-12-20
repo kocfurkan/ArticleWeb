@@ -4,7 +4,7 @@
     ViewBag.Title = "ProfileEdit";
 }
 
-<h2>Profile Edit</h2>
+<h2>Edit Profile</h2>
 
 
 <div class="container">
@@ -12,14 +12,24 @@
     <div class="row">
         @using (Html.BeginForm("ProfileEdit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <div class="col-md-3">
-                <img src="~/Image/@Model.Avatar" class="img-circle" width="110" height="110" />
-                <br />
-                <input type="file" name="Avatar" id="Avatar" class="form-control" />
+            <div class="row">
+                <div class="col-md-12 text-center ">
+                    <img src="~/Image/@Model.Avatar" class="img-circle" width="110" height="110" />
+                    @Html.HiddenFor(Model => Model.Avatar)
+                    <br />
+                    <input type="file" name="Avatar" id="Avatar" class="form-control" />
+                </div>
             </div>
-            <div class="col-md-9" style="padding-left:10px;">
-                <div class="col-md-12" style="padding-left:10px;">
+            <div class="row">
+                <div class="col-md-12" >    
                     @Html.ValidationSummary(false)
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group ">
+                        @Html.LabelFor(Model => Model.Username, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 ">
+                        @Html.EditorFor(Model => Model.Username, new { @class = "control-control" })
+                        </div>
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(Model => Model.Name, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -44,13 +54,15 @@
                             @Html.EditorFor(Model => Model.Email, new { @class = "control-control" })
                         </div>
                     </div>
-                  
                 </div>
-                <div class="pull-right" style="margin-left:150px;"> 
+                <div class="pull-left" style="margin-left:194px; margin-top:10px;">
                     <button type="submit" class="btn btn-primary">Save</button>
                     @Html.ActionLink("Exit", "Profile", "Home", new { @class = "btn btn-primary" })
                 </div>
+
             </div>
+
+
         }
     </div>
 </div>

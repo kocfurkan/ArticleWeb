@@ -1,4 +1,5 @@
-﻿using Makale_Entities;
+﻿using ArticleWeb_Common;
+using Makale_Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -30,7 +31,7 @@ namespace Makale_DAL
             {
                 entObj.RegisterationDate = now;
                 entObj.UpdateDate = now;
-                entObj.UpdatedBy = "system";
+                entObj.UpdatedBy = Application_UpdaterUser._UserName;
             }
             return db.SaveChanges();
         }
@@ -57,7 +58,7 @@ namespace Makale_DAL
             if (obj is BaseEntity)
             {
                 entObj.UpdateDate = DateTime.Now;
-                entObj.UpdatedBy = "system";
+                entObj.UpdatedBy = Application_UpdaterUser._UserName;
             }
             return db.SaveChanges();
         }

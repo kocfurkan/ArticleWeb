@@ -1,3 +1,5 @@
+using ArticleWeb_Common;
+using Makale_Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,8 @@ namespace Makale_Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+         
         }
     }
 }

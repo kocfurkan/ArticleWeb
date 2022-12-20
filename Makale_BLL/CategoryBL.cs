@@ -21,5 +21,20 @@ namespace Makale_BLL
         {
             return repoCategory.Find(x=> x.Id == id);
         }
-    }
+
+		public void AddCategory(Category category)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UpdateCategory(Category category)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCategory(Category category)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

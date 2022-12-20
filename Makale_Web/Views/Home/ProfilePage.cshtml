@@ -1,4 +1,4 @@
-﻿@model User
+﻿    @model User
 @{
     ViewBag.Title = "Profile";
 }
@@ -25,7 +25,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="/Home/ProfileEdit">Edit</a></li>
-                    <li><a href="/Home/ProfileDelete">Delete</a></li>
+                    <li><a href="/Home/ProfileDelete" onclick="return comfirm ('Are You Sure You Want To Delete Your Account')">Delete</a></li>
                 </ul>
             </div>
         </div>
