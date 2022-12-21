@@ -61,7 +61,7 @@ namespace Makale_Web.Controllers
 		[HttpPost]
 		public ActionResult Login(LoginModel usr)
 		{
-			
+
 
 			if (ModelState.IsValid)
 			{
@@ -152,7 +152,7 @@ namespace Makale_Web.Controllers
 			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				if (Avatar != null && (Avatar.ContentType == "image/jpg" || Avatar.ContentType =="image/jpeg" || Avatar.ContentType=="image/png"))
+				if (Avatar != null && (Avatar.ContentType == "image/jpg" || Avatar.ContentType == "image/jpeg" || Avatar.ContentType == "image/png"))
 				{
 					string fileName = $"user_{usr.Id}.{Avatar.ContentType.Split('/')[1]}";
 					Avatar.SaveAs(Server.MapPath($"~/image/{fileName}"));

@@ -14,8 +14,13 @@ namespace Makale_DAL
         {
             Database.SetInitializer(new DBCreator());
         }
-
-        public DbSet<Category> Categories { get; set; }
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+            //Fluent API
+			modelBuilder.Entity<Note>().HasMany(n=>n.Comments).WithRequired(c=>c.Note).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Note>().HasMany(n=> n.Likes).WithRequired(l=>l.Note).WillCascadeOnDelete(true);
+		}
+		public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Note> Notes { get; set; }

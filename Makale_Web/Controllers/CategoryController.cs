@@ -46,12 +46,19 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Category category)
 		{
+			//Removes validation for given property of entity.
+
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				db.AddCategory(category);
+				ResponsesBL<Category> response = db.AddCategory(category);
+				if (response.errors.Count > 0)
+				{
+					response.errors.ForEach(x => ModelState.AddModelError("", x));
+					return View(category);
+				}
 				return RedirectToAction("Index");
 			}
-
 			return View(category);
 		}
 
@@ -73,9 +80,16 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Category category)
 		{
+
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				db.UpdateCategory(category);
+				ResponsesBL<Category> response = db.UpdateCategory(category);
+				if (response.errors.Count > 0)
+				{
+					response.errors.ForEach(x => ModelState.AddModelError("", x));
+					return View(category);
+				}
 				return RedirectToAction("Index");
 			}
 			return View(category);
@@ -97,8 +111,9 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Category category = db.GetCategory(id);
-			db.DeleteCategory(category);
+			ResponsesBL<Category> response = new ResponsesBL<Category>();
+			response.Obj = db.GetCategory(id);
+			db.DeleteCategory(response.Obj);
 			return RedirectToAction("Index");
 		}
 

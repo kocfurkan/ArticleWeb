@@ -15,6 +15,14 @@ namespace Makale_BLL
 		ResponsesBL<User> response = new ResponsesBL<User>();
 
 		Repository<User> repoUsr = new Repository<User>();
+		public List<User> GetUsers()
+		{
+			return repoUsr.Read();
+		}
+		public User GetUserById(int id)
+		{
+			return repoUsr.Find(x => x.Id == id);
+		}
 		public ResponsesBL<User> SignUp(SignupModel sngUsr)
 		{
 			User usr = repoUsr.Find(x => x.Username == sngUsr.Username || x.Email == sngUsr.Email);
@@ -107,17 +115,21 @@ namespace Makale_BLL
 		public ResponsesBL<User> UpdateUser(User usr)
 		{
 			ResponsesBL<User> response = new ResponsesBL<User>();
-			User userEdited = repoUsr.Find(x => x.Username == usr.Username || x.Email == usr.Email);
+			User userEdited = repoUsr.Find(x => x.Username == usr.Username);
+			User userEdited2 = repoUsr.Find(x => x.Email == usr.Email);
+
 			if (userEdited != null && userEdited.Id != usr.Id)
 			{
-				if (userEdited.Username == usr.Username)
-				{
-					response.errors.Add("Username Is Already In Use");
-				}
-				if (userEdited.Email == usr.Email)
-				{
-					response.errors.Add("Email Is Already In Use");
-				}
+				response.errors.Add("Username Is Already In Use");
+
+			}
+			if (userEdited2 != null && userEdited2.Id != usr.Id)
+			{
+				response.errors.Add("Username Is Already In Use");
+			}
+			if (response.errors.Count >0)
+			{
+				response.Obj=usr;
 				return response;
 			}
 			response.Obj = repoUsr.Find(x => x.Id == usr.Id);
@@ -130,7 +142,7 @@ namespace Makale_BLL
 				response.Obj.Avatar = usr.Avatar;
 			}
 			int updateResult = repoUsr.Update(response.Obj);
-			if (updateResult > 1)
+			if (updateResult < 1)
 			{
 				response.errors.Add("Failed to Update the Profile, Please Check Your Inputs");
 			}
