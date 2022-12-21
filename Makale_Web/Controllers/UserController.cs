@@ -46,15 +46,15 @@ namespace Makale_Web.Controllers
 		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(SignupModel registeringusr)
+		public ActionResult Create(User user)
 		{
 			if (ModelState.IsValid)
 			{
-				db.SignUp(registeringusr);
+				db.CreateUser(user);
 
-				return RedirectToAction("SignupSuccess");
+				return RedirectToAction("Index");
 			}
-			return View(registeringusr);
+			return View(user);
 
 		}
 
