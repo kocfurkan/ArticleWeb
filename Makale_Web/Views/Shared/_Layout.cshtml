@@ -29,7 +29,6 @@
         {
             usr = (User)Session["login"];
         }
-
     }
 
     <!-- Navigation -->
@@ -71,8 +70,8 @@
                             
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menage <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/Note/AddNote">Add Note</a></li>
-                                <li><a href="/Note/Notes">My Notes</a></li>
+                                <li><a href="/Note/Create">Add Note</a></li>
+                                <li><a href="/Note/Index">My Notes</a></li>
                                 @if (usr.Admin)
                                 {
                                     <li><a href="/Category/Create">Add Category</a></li>
@@ -92,7 +91,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
+  
     </nav>
     <!-- Page Content -->
     @RenderBody()

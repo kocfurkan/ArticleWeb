@@ -1,0 +1,10 @@
+﻿
+@*Custom HTML Helpers. Similar to react components*@
+@helper LinkButton(string text,string url="", string id="",string name="",string color="", string css ="") 
+    { 
+        <a href="@url" class="btn btn-@color @css" name="@name">@text</a>
+    }
+
+@helper Button(string text,string type="button", string id = "", string color = "", string css = "") { 
+    <button type="@type" class="btn btn-@color @css" id="@id">@text</button>
+    }

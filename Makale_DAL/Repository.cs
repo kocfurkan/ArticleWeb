@@ -45,6 +45,10 @@ namespace Makale_DAL
         {
             return objSet.Where(condition).ToList();
         }
+        public IQueryable<T> ReadQueryable()
+        {
+            return objSet.AsQueryable();
+        }
 
         public T Find(Expression<Func<T, bool>> condition)
         {

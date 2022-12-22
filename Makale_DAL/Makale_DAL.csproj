@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202212211137131_addedCascades.designer.cs">
       <DependentUpon>202212211137131_addedCascades.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212221019302_AddedCategoryIdToNotes.cs" />
+    <Compile Include="Migrations\202212221019302_AddedCategoryIdToNotes.designer.cs">
+      <DependentUpon>202212221019302_AddedCategoryIdToNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212211137131_addedCascades.resx">
       <DependentUpon>202212211137131_addedCascades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212221019302_AddedCategoryIdToNotes.resx">
+      <DependentUpon>202212221019302_AddedCategoryIdToNotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
