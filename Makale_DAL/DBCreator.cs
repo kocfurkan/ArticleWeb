@@ -1,4 +1,4 @@
-﻿using Makale_Entities;
+﻿using Article_Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_DAL
+namespace Article_DAL
 {
     public class DBCreator : CreateDatabaseIfNotExists<DatabaseContext>
     {

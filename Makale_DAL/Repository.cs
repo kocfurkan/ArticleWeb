@@ -1,5 +1,5 @@
 ﻿using ArticleWeb_Common;
-using Makale_Entities;
+using Article_Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_DAL
+namespace Article_DAL
 {
     //We have to be sure that T is a class(which will be provided to Set<T>), "where T : class" conforms that condition.
     //DbContext is initialized in DbSingleton for avoiding multiple referance error. (This could've been done in Constructor of repository too.
@@ -29,6 +29,7 @@ namespace Makale_DAL
             DateTime now = DateTime.Now;
             if (obj is BaseEntity)
             {
+               
                 entObj.RegisterationDate = now;
                 entObj.UpdateDate = now;
                 entObj.UpdatedBy = Application_UpdaterUser._UserName;

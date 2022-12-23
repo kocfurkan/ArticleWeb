@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Makale_Web</RootNamespace>
-    <AssemblyName>Makale_Web</AssemblyName>
+    <RootNamespace>Article_Web</RootNamespace>
+    <AssemblyName>Article_Web</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -188,13 +188,13 @@
       <Project>{230768eb-0569-42be-b309-5feb127fe376}</Project>
       <Name>ArticleWeb_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Makale_BLL\Makale_BLL.csproj">
+    <ProjectReference Include="..\Makale_BLL\Article_BLL.csproj">
       <Project>{6fec3c4a-cd5d-41e4-a065-f18e718744b3}</Project>
-      <Name>Makale_BLL</Name>
+      <Name>Article_BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Makale_Entities\Makale_Entities.csproj">
+    <ProjectReference Include="..\Makale_Entities\Article_Entities.csproj">
       <Project>{6a15abe4-52b3-405a-a573-a6e1559796d4}</Project>
-      <Name>Makale_Entities</Name>
+      <Name>Article_Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

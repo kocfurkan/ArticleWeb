@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_Entities.ViewModels
+namespace Article_Entities.ViewModels
 {
     public class LoginModel
     {

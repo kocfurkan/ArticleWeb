@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_DAL
+namespace Article_DAL
 {
     public class DbSingleton
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_Entities
+namespace Article_Entities
 {
     public class User : BaseEntity
     {

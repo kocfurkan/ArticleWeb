@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Makale_BLL;
-using Makale_Entities;
-using Makale_Entities.ViewModels;
+using Article_BLL;
+using Article_Entities;
+using Article_Entities.ViewModels;
 
 
-namespace Makale_Web.Controllers
+namespace Article_Web.Controllers
 {
 	public class UserController : Controller
 	{
@@ -48,9 +48,10 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(User user)
 		{
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				db.CreateUser(user);
+				db.CreateUserByAdmin(user);
 
 				return RedirectToAction("Index");
 			}
@@ -78,6 +79,7 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(User user)
 		{
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
 				db.UpdateUser(user);
@@ -89,7 +91,6 @@ namespace Makale_Web.Controllers
 		// GET: User/Delete/5
 		public ActionResult Delete(int id)
 		{
-
 			User user = db.GetUserById(id);
 			if (user == null)
 			{

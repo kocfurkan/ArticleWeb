@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_BLL
+namespace Article_BLL
 {
     //T Could only be a class(Preventing other types of arguments)
     public class ResponsesBL<T> where T : class

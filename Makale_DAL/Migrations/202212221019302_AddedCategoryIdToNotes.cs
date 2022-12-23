@@ -1,4 +1,4 @@
-﻿namespace Makale_DAL.Migrations
+﻿namespace Article_DAL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

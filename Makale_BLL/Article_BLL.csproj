@@ -64,13 +64,13 @@
       <Project>{230768eb-0569-42be-b309-5feb127fe376}</Project>
       <Name>ArticleWeb_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Makale_DAL\Makale_DAL.csproj">
+    <ProjectReference Include="..\Makale_DAL\Article_DAL.csproj">
       <Project>{c3148f06-5e6c-4fcc-a4fc-e9b67877d0fe}</Project>
-      <Name>Makale_DAL</Name>
+      <Name>Article_DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Makale_Entities\Makale_Entities.csproj">
+    <ProjectReference Include="..\Makale_Entities\Article_Entities.csproj">
       <Project>{6a15abe4-52b3-405a-a573-a6e1559796d4}</Project>
-      <Name>Makale_Entities</Name>
+      <Name>Article_Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

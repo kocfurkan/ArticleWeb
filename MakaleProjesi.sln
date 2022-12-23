@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_Web", "Makale_Web\Makale_Web.csproj", "{AB571422-EB85-4216-8497-4924661559A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Article_Web", "Makale_Web\Article_Web.csproj", "{AB571422-EB85-4216-8497-4924661559A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_Entities", "Makale_Entities\Makale_Entities.csproj", "{6A15ABE4-52B3-405A-A573-A6E1559796D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Article_Entities", "Makale_Entities\Article_Entities.csproj", "{6A15ABE4-52B3-405A-A573-A6E1559796D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_DAL", "Makale_DAL\Makale_DAL.csproj", "{C3148F06-5E6C-4FCC-A4FC-E9B67877D0FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Article_DAL", "Makale_DAL\Article_DAL.csproj", "{C3148F06-5E6C-4FCC-A4FC-E9B67877D0FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makale_BLL", "Makale_BLL\Makale_BLL.csproj", "{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Article_BLL", "Makale_BLL\Article_BLL.csproj", "{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleWeb_Common", "ArticleWeb_Common\ArticleWeb_Common.csproj", "{230768EB-0569-42BE-B309-5FEB127FE376}"
 EndProject

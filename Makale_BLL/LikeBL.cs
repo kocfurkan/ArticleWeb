@@ -1,12 +1,12 @@
-﻿using Makale_DAL;
-using Makale_Entities;
+﻿using Article_DAL;
+using Article_Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_BLL
+namespace Article_BLL
 {
 	public class LikeBL
 	{

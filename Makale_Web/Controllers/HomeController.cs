@@ -1,14 +1,14 @@
 ﻿using ArticleWeb_Common;
-using Makale_BLL;
-using Makale_Entities;
-using Makale_Entities.ViewModels;
+using Article_BLL;
+using Article_Entities;
+using Article_Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Makale_Web.Controllers
+namespace Article_Web.Controllers
 {
 	public class HomeController : Controller
 	{

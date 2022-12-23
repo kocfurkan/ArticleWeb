@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Makale_BLL;
-using Makale_Entities;
-using Makale_Web.Data;
+using Article_BLL;
+using Article_Entities;
+using Article_Web.Data;
 
-namespace Makale_Web.Controllers
+namespace Article_Web.Controllers
 {
 	public class NoteController : Controller
 	{
@@ -21,10 +21,10 @@ namespace Makale_Web.Controllers
 		public ActionResult Index()
 		{
 			var notes = db.ReadNotesQueryable().Include(n => n.Category);
-			if (Session["loign"] != null)
+			if (Session["login"] != null)
 			{
 				User usr = (User)Session["login"];
-				notes = db.ReadNotesQueryable().Include(n => n.Category).Include(k => k.User).Where(x => x.User.Id == usr.Id);
+				notes = db.ReadNotesQueryable().Include(n => n.Category).Where(x => x.User.Id == usr.Id);
 			}
 
 			return View(notes.ToList());
@@ -33,10 +33,10 @@ namespace Makale_Web.Controllers
 		{
 
 			var notes = db.ReadNotesQueryable().Include(n => n.Category);
-			if (Session["loign"] != null)
+			if (Session["login"] != null)
 			{
 				User usr = (User)Session["login"];
-				notes = likeBL.GetLikesQueryable().Include("User").Include("Note").Where(x => x.User.Id == usr.Id).Select(x=>x.Note).Include(k=>k.Category);
+				notes = likeBL.GetLikesQueryable().Include("User").Include("Note").Where(x => x.User.Id == usr.Id).Select(x => x.Note).Include(k => k.Category);
 			}
 			return View("Index", notes.ToList());
 		}
@@ -70,13 +70,28 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Note note)
 		{
+			User usr = null;
+			if (Session["login"] != null)
+			{
+				usr = (User)Session["login"];
+			}
+
+			note.User = usr;
+			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				db.SaveNote(note);
+				ResponsesBL<Note> response = db.SaveNote(note);
+				if (response.errors.Count > 0)
+				{
+					response.errors.ForEach(x => ModelState.AddModelError("", x));
+					return View(note);
+				}
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+
 			return View(note);
 		}
 
@@ -103,13 +118,21 @@ namespace Makale_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Note note)
 		{
+			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-				db.UpdateNote(note);
 
+
+				ResponsesBL<Note> response = db.UpdateNote(note);
+				if (response.errors.Count > 0)
+				{
+					response.errors.ForEach(x => ModelState.AddModelError("", x));
+					return View(note);
+				}
 				return RedirectToAction("Index");
+
 			}
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
 			return View(note);
 		}
 
@@ -134,7 +157,12 @@ namespace Makale_Web.Controllers
 		public ActionResult DeleteConfirmed(int id)
 		{
 			Note note = db.GetNoteById(id);
-			db.DeleteNote(note);
+			ResponsesBL<Note> respons = db.DeleteNote(note);
+			if (respons.errors.Count < 1)
+			{
+				respons.errors.ForEach(x => ModelState.AddModelError("", x));
+				return View(note);
+			}
 			return RedirectToAction("Index");
 		}
 

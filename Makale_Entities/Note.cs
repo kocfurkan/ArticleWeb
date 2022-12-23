@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makale_Entities
+namespace Article_Entities
 {
     public class Note : BaseEntity
     {
-        [DisplayName("Category"),Required, StringLength(250)]
+        [Required, StringLength(250)]
         public string Title { get; set; }
         [Required, StringLength(250)]
         public string Text { get; set; }

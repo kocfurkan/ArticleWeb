@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Makale_Entities.Note>
+﻿@model IEnumerable<Article_Entities.Note>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User.Username)
+            @Html.DisplayNameFor(model => model.User.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Category.Title)
@@ -44,7 +44,7 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayNameFor(model => model.User.Username)
+        @Html.DisplayNameFor(model => model.User.Name)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Category.Title)
