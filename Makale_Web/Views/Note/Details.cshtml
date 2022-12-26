@@ -4,79 +4,84 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
 
-<div>
-    <h4>Note</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Title)
-        </dt>
+            <div>
+                <h2>Details</h2>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category.Title)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Title)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Category.Title)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Text)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Text)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Draft)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Draft)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Draft)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Draft)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LikeNumber)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LikeNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LikeNumber)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LikeNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RegisterationDate)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RegisterationDate)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RegisterationDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.RegisterationDate)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UpdateDate)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdateDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.UpdateDate)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UpdatedBy)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.UpdatedBy)
+                    </dd>
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new{@class="btn btn-primary"}) |
+                @Html.ActionLink("Back to List", "Index","", new { @class = "btn btn-primary" })
+            </p>
 
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

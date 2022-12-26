@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Article_BLL;
 using Article_Entities;
 using Article_Web.Data;
+using Article_Web.Models;
 
 namespace Article_Web.Controllers
 {
@@ -59,7 +60,7 @@ namespace Article_Web.Controllers
 		// GET: Note/Create
 		public ActionResult Create()
 		{
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title");
+			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title");
 			return View();
 		}
 
@@ -77,7 +78,7 @@ namespace Article_Web.Controllers
 			}
 
 			note.User = usr;
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title", note.CategoryId);
 
 			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
@@ -107,7 +108,7 @@ namespace Article_Web.Controllers
 			{
 				return HttpNotFound();
 			}
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title", note.CategoryId);
 			return View(note);
 		}
 
@@ -118,7 +119,7 @@ namespace Article_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Note note)
 		{
-			ViewBag.CategoryId = new SelectList(categoryBl.ReadCategories(), "Id", "Title", note.CategoryId);
+			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(),"Id", "Title", note.CategoryId);
 			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{

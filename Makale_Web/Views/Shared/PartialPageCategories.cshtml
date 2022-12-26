@@ -1,9 +1,10 @@
 ﻿@using Article_BLL
 @using Article_Entities
+@using Article_Web.Models
 
 @{
     CategoryBL ctgBL = new CategoryBL();
-    List<Category> Categories = ctgBL.ReadCategories();
+    List<Category> Categories = CacheHelper.Categories();
 }
 
 

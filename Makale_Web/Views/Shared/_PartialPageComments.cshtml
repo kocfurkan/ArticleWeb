@@ -1,0 +1,41 @@
+﻿@using Article_Entities
+
+@model List<Comment>
+
+@{
+    User usr = null;
+    if (Session["login"] != null)
+    {
+        usr = (User)Session["login"];
+    }
+}
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <img src="~/Image/@item.User.Avatar" class="img-circle" width="48" height="48" />
+        </div>
+        <div class="media-body">
+            <div>
+                <div class="col-md-10">
+                    <h5><b>@item.User.Username</b></h5>
+                    <span id="text_@item.Id">@item.Text</span>
+                    <div>
+                        @if (usr != null && usr.Id == item.User.Id)
+                        {
+                            <span>
+                                <button type="button" class="btn btn-xs btn-primary" onclick="editComment('edit',@item.Id,text_@item.Id)">Edit</button>
+                                <button type="button" class="btn btn-primary btn-xs">Delete</button>
+                            </span>
+                        }
+                        <small class="pull-right">
+                            <span> @item.UpdateDate</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

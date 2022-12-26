@@ -1,10 +1,30 @@
-﻿
-@*Custom HTML Helpers. Similar to react components*@
-@helper LinkButton(string text,string url="", string id="",string name="",string color="", string css ="") 
-    { 
-        <a href="@url" class="btn btn-@color @css" name="@name">@text</a>
-    }
+﻿@*Custom HTML Helpers. Similar to react components*@
+@helper LinkButton(string text, string url = "", string id = "", string name = "", string color = "", string css = "")
+{
+    <a href="@url" class="btn btn-@color @css" name="@name">@text</a>
+}
 
-@helper Button(string text,string type="button", string id = "", string color = "", string css = "") { 
+@helper Button(string text, string type = "button", string id = "", string color = "", string css = "")
+{
     <button type="@type" class="btn btn-@color @css" id="@id">@text</button>
-    }
+}
+
+@helper Modal(string id,string title)
+{
+    <div class="modal fade" id="@id" name="@id" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="@(id+"_header")">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">@title</h4>
+                </div>
+                <div class="modal-body" id="@(id+"_body")">
+                    
+                </div>
+                <div class="modal-footer" id="@(id+"_footer")">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}

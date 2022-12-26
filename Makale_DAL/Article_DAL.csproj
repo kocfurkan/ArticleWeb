@@ -8,8 +8,8 @@
     <ProjectGuid>{C3148F06-5E6C-4FCC-A4FC-E9B67877D0FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Makale_DAL</RootNamespace>
-    <AssemblyName>Makale_DAL</AssemblyName>
+    <RootNamespace>Article_DAL</RootNamespace>
+    <AssemblyName>Article_DAL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

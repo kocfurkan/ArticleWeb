@@ -8,8 +8,8 @@
     <ProjectGuid>{6FEC3C4A-CD5D-41E4-A065-F18E718744B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Makale_BLL</RootNamespace>
-    <AssemblyName>Makale_BLL</AssemblyName>
+    <RootNamespace>Article_BLL</RootNamespace>
+    <AssemblyName>Article_BLL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

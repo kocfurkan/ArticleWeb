@@ -1,7 +1,6 @@
 ﻿
 @model  List<Note>
 
-
 @{
     ViewBag.Title = "Index";
 }
@@ -20,17 +19,12 @@
 </style>
 
 <div class="container">
-
     <div class="row">
-
         <div class="col-md-3">
             @Html.Partial("PartialPageCategories")
         </div>
-
         <div class="col-md-9">
-
             <div class="row carousel-holder">
-
                 <div class="col-md-12">
                     <div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -57,9 +51,7 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-
             <div class="row">
                 @foreach (var item in Model)
                 {
@@ -88,7 +80,9 @@
                                 <hr />
                             </div>
                             <div class="ratings">
-                                <p class="pull-right"><button class="btn btn-primary btn-xs "><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
+                                @*data-...="data" is for keeping data required*@
+                                
+                                <p class="pull-right"><button class="btn btn-primary btn-xs " data-target="#modal1" data-toggle="modal" data-noteid="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
                                 <p>
                                     <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-heart-empty" style="margin-right:0.3rem"></span>@item.LikeNumber</button>
                                 </p>
@@ -103,4 +97,22 @@
 
 @section footer{
     @Html.Partial("_PartialPageFooter")
+}
+@_CustomHelpers.Modal("modal1", "Comments")
+
+@*Script runs after the modal has opened*@
+
+<script>
+    $(function () {
+        $("#modal1").on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget)
+            var noteId = button.data("noteid")
+            $('#modal1_body').load("/Comment/ShowComment/"+noteId);
+        });
+    })
+
+    const editComment = (mod, yourumid, yorumtext) =>
+    {
+
     }
+</script>
