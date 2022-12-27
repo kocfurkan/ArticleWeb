@@ -81,7 +81,7 @@
                             </div>
                             <div class="ratings">
                                 @*data-...="data" is for keeping data required*@
-                                
+
                                 <p class="pull-right"><button class="btn btn-primary btn-xs " data-target="#modal1" data-toggle="modal" data-noteid="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
                                 <p>
                                     <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-heart-empty" style="margin-right:0.3rem"></span>@item.LikeNumber</button>
@@ -103,16 +103,85 @@
 @*Script runs after the modal has opened*@
 
 <script>
+    var noteId = -1;
     $(function () {
         $("#modal1").on('show.bs.modal', function (e) {
             var button = $(e.relatedTarget)
             var noteId = button.data("noteid")
-            $('#modal1_body').load("/Comment/ShowComment/"+noteId);
+            $('#modal1_body').load("/Comment/ShowComment/" + noteId);
         });
     })
 
-    const editComment = (mod, yourumid, yorumtext) =>
-    {
+    const editComment = (button, process, commentid, commenttext) => {
+        var button = $(button);
+        var editmode = button.data("edit");
 
+        if (process === "update") {
+            if (!editmode) {
+                button.data("edit", true)
+                button.removeClass("btn-primary");
+                button.addClass("btn-info");
+
+                $(commenttext).attr("contenteditable", true);
+                $(commenttext).focus();
+            }
+            else {
+                button.data("edit", false)
+                button.removeClass("btn-info");
+                button.addClass("btn-primary");
+
+                $(commenttext).attr("contenteditable", false);
+
+                var editedText = $(commenttext).text();
+                $.ajax({
+                    method: "POST",
+                    url: "/Comment/Edit/" + commentid,
+                    data: { text: editedText }
+                }).done(function (data) {
+                    if (data.result) {
+                        $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                    } else {
+                        alert("Update Failed")
+                    }
+                }).fail(function () {
+                    alert("Server Error")
+                })
+            }
+        }
+        else if (process === "delete") {
+            var msg = confirm("Do You Want To Delete The Comment");
+            if (!msg) {
+                return false;
+            }
+            $.ajax({
+                method: "GET",
+                url: "/Comment/Delete/" + commentid
+            }).done(function (data) {
+                if (data.result) {
+                    $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                } else {
+                    alert("Update Failed")
+                }
+            }).fail(function () {
+                alert("Server Error")
+            })
+        }
+        else if (process === "create") {
+          
+            var comment = $("#comment_text").val();
+            $.ajax({
+                method: "Post",
+                url: "/Comment/Create",
+                data: { text: comment, noteId:noteId }
+            }).done(function (data) {
+                if (data.result) {
+                    $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                } else {
+                    alert("Commenting Failed")
+                }
+            }).fail(function () {
+                alert("Commenting Failed")
+            });
+        }
     }
 </script>

@@ -9,24 +9,23 @@
         usr = (User)Session["login"];
     }
 }
-
 @foreach (var item in Model)
 {
-    <div class="media">
+    <div class="media" style="padding-left:60px;">
         <div class="media-left">
             <img src="~/Image/@item.User.Avatar" class="img-circle" width="48" height="48" />
         </div>
         <div class="media-body">
             <div>
-                <div class="col-md-10">
+                <div class="col-md-11">
                     <h5><b>@item.User.Username</b></h5>
-                    <span id="text_@item.Id">@item.Text</span>
+                    <span id="text_@item.Id" contenteditable="false">@item.Text</span>
                     <div>
                         @if (usr != null && usr.Id == item.User.Id)
                         {
                             <span>
-                                <button type="button" class="btn btn-xs btn-primary" onclick="editComment('edit',@item.Id,text_@item.Id)">Edit</button>
-                                <button type="button" class="btn btn-primary btn-xs">Delete</button>
+                                <button type="button" class="btn btn-xs btn-primary" data-edit='false' onclick="editComment(this,'update',@item.Id,text_@item.Id)">Edit</button>
+                                <button type="button" class="btn btn-primary btn-xs" onclick="editComment(this,'delete',@item.Id,text_@item.Id)">Delete</button>
                             </span>
                         }
                         <small class="pull-right">
@@ -37,5 +36,14 @@
             </div>
         </div>
     </div>
+}
 
+@if (usr != null)
+{
+    <div class="input-group text-center" style="margin-top:20px; width:auto ">
+        <input type="text" class="form-control" placeholder="Comment..." id="comment_text">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick="editComment(this, 'create');">Send</button>
+        </span>
+    </div><!-- /input-group -->
 }
