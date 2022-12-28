@@ -7,12 +7,12 @@
 
 <div class="container">
     <div class="row">
-        
+
         <div class="col-md-12">
             <h2>Notes</h2>
             <p>
             <p> @_CustomHelpers.LinkButton("Create New", "/Note/Create", "create", "Create Note", "primary")</p>
-            
+
             <table class="table">
                 <tr>
                     <th>
@@ -79,6 +79,8 @@
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |
                             @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            <p><button class="btn btn-primary " data-target="#modal1" data-toggle="modal" data-noteId="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
+                            <p>
                         </td>
                     </tr>
                 }
@@ -89,4 +91,92 @@
 </div>
 
 
+@_CustomHelpers.Modal("modal1", "Comments")
 
+@*Script runs after the modal has opened*@
+
+<script>
+    var noteId = -1;
+    $(function () {
+        $("#modal1").on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+
+            var noteId = button.data("noteId");
+            $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+        });
+    })
+
+    const editComment = (button, process, commentid, commenttext) => {
+        var button = $(button);
+        var editmode = button.data("edit");
+
+        if (process === "update") {
+            if (!editmode) {
+                button.data("edit", true)
+                button.removeClass("btn-primary");
+                button.addClass("btn-info");
+
+                $(commenttext).attr("contenteditable", true);
+                $(commenttext).focus();
+            }
+            else {
+                button.data("edit", false)
+                button.removeClass("btn-info");
+                button.addClass("btn-primary");
+
+                $(commenttext).attr("contenteditable", false);
+
+                var editedText = $(commenttext).text();
+                $.ajax({
+                    method: "POST",
+                    url: "/Comment/Edit/" + commentid,
+                    data: { text: editedText }
+                }).done(function (data) {
+                    if (data.result) {
+                        $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                    } else {
+                        alert("Update Failed")
+                    }
+                }).fail(function () {
+                    alert("Server Error")
+                })
+            }
+        }
+        else if (process === "delete") {
+            var msg = confirm("Do You Want To Delete The Comment");
+            if (!msg) {
+                return false;
+            }
+            $.ajax({
+                method: "GET",
+                url: "/Comment/Delete/" + commentid
+            }).done(function (data) {
+                if (data.result) {
+                    $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                } else {
+                    alert("Update Failed")
+                }
+            }).fail(function () {
+                alert("Server Error")
+            })
+        }
+        else if (process === "create") {
+
+            var comment = $("#comment_text").val();
+            $.ajax({
+                method: "Post",
+                url: "/Comment/Create",
+                data: { text: comment, noteId: noteId }
+            }).done(function (data) {
+                if (data.result) {
+                    $('#modal1_body').load("/Comment/ShowComment/" + noteId);
+                } else {
+                    alert("Commenting Failed")
+                }
+            }).fail(function () {
+                alert("Commenting Failed")
+            });
+        }
+    }
+</script>
+<script src="~/Scripts/Like.js"></script>>

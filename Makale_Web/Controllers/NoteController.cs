@@ -18,6 +18,8 @@ namespace Article_Web.Controllers
 		NoteBL db = new NoteBL();
 		CategoryBL categoryBl = new CategoryBL();
 		LikeBL likeBL = new LikeBL();
+
+
 		// GET: Note
 		public ActionResult Index()
 		{
@@ -119,12 +121,10 @@ namespace Article_Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Note note)
 		{
-			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(),"Id", "Title", note.CategoryId);
+			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title", note.CategoryId);
 			ModelState.Remove("UpdatedBy");
 			if (ModelState.IsValid)
 			{
-
-
 				ResponsesBL<Note> response = db.UpdateNote(note);
 				if (response.errors.Count > 0)
 				{
@@ -166,7 +166,56 @@ namespace Article_Web.Controllers
 			}
 			return RedirectToAction("Index");
 		}
+		//same name in ajax post must be given as argument
+		[HttpPost]
+		public ActionResult GetLikes(int[] id_noteids)
+		{
+			List<int> myLikes = new List<int>();
+			User usr = (User)Session["login"];
+			if (usr != null) { myLikes = likeBL.ListLikes(x => x.User.Id == usr.Id && id_noteids.Contains(x.Note.Id)).Select(x => x.Note.Id).ToList(); }
 
+			//select not_id from likes where usrid = 2 and not_id in (noteids[])
+			return Json(new { result = myLikes });
+		}
 
+		public ActionResult SetLike(int noteId, bool likeArg)
+		{
+			int result = 0;
+			Note note = db.GetNoteById(noteId);
+			User usr = (User)Session["login"];
+			Like likes = likeBL.FindLike(noteId, usr.Id);
+
+			if (likes != null && likeArg == false)
+			{
+				likeBL.RemoveLike(likes);
+			}
+			else if (likes == null && likeArg == true)
+			{
+				result = likeBL.AddLike(new Like()
+				{
+					User = usr,
+					Note = note,
+				});
+			}
+			if (result > 0)
+			{
+				if (likeArg)
+				{
+					note.LikeNumber++;
+				}
+				else
+				{
+					note.LikeNumber--;
+				}
+				//
+				ResponsesBL<Note> blResult = db.UpdateNote(note);
+
+				if (blResult.errors.Count == 0)
+				{
+					return Json(new { error = false, resultLike= note.LikeNumber });
+				}
+			}
+			return Json(new { error = true, resultLike= note.LikeNumber });
+		}
 	}
 }

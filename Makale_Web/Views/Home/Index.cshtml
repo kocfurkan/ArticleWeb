@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="~/Scripts/jquery-3.6.1.min.js"></script>
 <style>
     .carousel .item {
         height: 300px;
@@ -55,7 +55,7 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-4 col-lg-4 col-md-4" data-noteId="@item.Id">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
@@ -82,9 +82,12 @@
                             <div class="ratings">
                                 @*data-...="data" is for keeping data required*@
 
-                                <p class="pull-right"><button class="btn btn-primary btn-xs " data-target="#modal1" data-toggle="modal" data-noteid="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
+                                <p class="pull-right"><button class="btn btn-primary btn-xs " data-target="#modal1" data-toggle="modal" data-noteId="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
                                 <p>
-                                    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-heart-empty" style="margin-right:0.3rem"></span>@item.LikeNumber</button>
+                                    <button class="btn btn-primary btn-xs" data-noteId="@item.Id">
+                                        <span class="glyphicon glyphicon-heart-empty like-heart" style="margin-right:0.3rem" data-like="false"></span>
+                                        <span class="likenumber"> @item.LikeNumber</span>
+                                    </button>
                                 </p>
                             </div>
                         </div>
@@ -106,8 +109,8 @@
     var noteId = -1;
     $(function () {
         $("#modal1").on('show.bs.modal', function (e) {
-            var button = $(e.relatedTarget)
-            var noteId = button.data("noteid")
+            var button = $(e.relatedTarget);
+            noteId = button.data("noteId");
             $('#modal1_body').load("/Comment/ShowComment/" + noteId);
         });
     })
@@ -167,12 +170,12 @@
             })
         }
         else if (process === "create") {
-          
+
             var comment = $("#comment_text").val();
             $.ajax({
                 method: "Post",
                 url: "/Comment/Create",
-                data: { text: comment, noteId:noteId }
+                data: { text: comment, noteId: noteId }
             }).done(function (data) {
                 if (data.result) {
                     $('#modal1_body').load("/Comment/ShowComment/" + noteId);
@@ -185,3 +188,4 @@
         }
     }
 </script>
+<script src="~/Scripts/Like.js"></script>>

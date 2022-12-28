@@ -145,6 +145,7 @@
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.min.js" />
+    <Content Include="Scripts\Like.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,9 @@
       <Project>{6a15abe4-52b3-405a-a573-a6e1559796d4}</Project>
       <Name>Article_Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

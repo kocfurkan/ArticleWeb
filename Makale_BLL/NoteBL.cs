@@ -53,6 +53,8 @@ namespace Article_BLL
 				response.Obj.Text = note.Text;
 				response.Obj.CategoryId = note.CategoryId;
 				response.Obj.Draft = note.Draft;
+				response.Obj.LikeNumber = note.LikeNumber;
+
 				if (repoNote.Update(response.Obj) < 1)
 				{
 					response.errors.Add("Failed to update the note");
