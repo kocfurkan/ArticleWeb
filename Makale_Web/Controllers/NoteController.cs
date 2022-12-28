@@ -168,11 +168,11 @@ namespace Article_Web.Controllers
 		}
 		//same name in ajax post must be given as argument
 		[HttpPost]
-		public ActionResult GetLikes(int[] id_noteids)
+		public ActionResult GetLikes(int[] id_arr)
 		{
 			List<int> myLikes = new List<int>();
 			User usr = (User)Session["login"];
-			if (usr != null) { myLikes = likeBL.ListLikes(x => x.User.Id == usr.Id && id_noteids.Contains(x.Note.Id)).Select(x => x.Note.Id).ToList(); }
+			if (usr != null) {myLikes = likeBL.ListLikes(x => x.User.Id == usr.Id && id_arr.Contains(x.Note.Id)).Select(x => x.Note.Id).ToList(); }
 
 			//select not_id from likes where usrid = 2 and not_id in (noteids[])
 			return Json(new { result = myLikes });
@@ -187,7 +187,7 @@ namespace Article_Web.Controllers
 
 			if (likes != null && likeArg == false)
 			{
-				likeBL.RemoveLike(likes);
+				result = likeBL.RemoveLike(likes);
 			}
 			else if (likes == null && likeArg == true)
 			{

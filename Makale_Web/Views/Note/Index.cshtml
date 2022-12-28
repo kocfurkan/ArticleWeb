@@ -97,17 +97,21 @@
 
 <script>
     var noteId = -1;
+
     $(function () {
-        $("#modal1").on('show.bs.modal', function (e) {
+        $('#modal1').on('show.bs.modal', function (e) {
+
+
             var button = $(e.relatedTarget);
-
-            var noteId = button.data("noteId");
+            noteId = button.data("noteid");
+            console.log(button.text);
             $('#modal1_body').load("/Comment/ShowComment/" + noteId);
-        });
-    })
 
-    const editComment = (button, process, commentid, commenttext) => {
-        var button = $(button);
+        });
+    });
+
+    const editComment = (btn, process, commentid, commenttext) => {
+        var button = $(btn);
         var editmode = button.data("edit");
 
         if (process === "update") {
@@ -166,7 +170,7 @@
             $.ajax({
                 method: "Post",
                 url: "/Comment/Create",
-                data: { text: comment, noteId: noteId }
+                data: { Text: comment, noteId: noteId }
             }).done(function (data) {
                 if (data.result) {
                     $('#modal1_body').load("/Comment/ShowComment/" + noteId);
@@ -179,4 +183,3 @@
         }
     }
 </script>
-<script src="~/Scripts/Like.js"></script>>
