@@ -9,8 +9,12 @@
         usr = (User)Session["login"];
     }
 }
+
+
+
 @foreach (var item in Model)
 {
+
     <div class="media" style="padding-left:60px;">
         <div class="media-left">
             <img src="~/Image/@item.User.Avatar" class="img-circle" width="48" height="48" />

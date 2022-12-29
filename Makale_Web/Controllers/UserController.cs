@@ -9,10 +9,11 @@ using System.Web.Mvc;
 using Article_BLL;
 using Article_Entities;
 using Article_Entities.ViewModels;
-
+using Article_Web.Filters;
 
 namespace Article_Web.Controllers
 {
+	[AdminFilter]
 	public class UserController : Controller
 	{
 		UserBL db = new UserBL();

@@ -156,6 +156,9 @@
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\Makale_WebContext.cs" />
+    <Compile Include="Filters\AdminFilter.cs" />
+    <Compile Include="Filters\AuthFilter.cs" />
+    <Compile Include="Filters\OnExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,6 +201,8 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.1.min.map" />
+    <Content Include="Views\Shared\_PartialPageNote.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

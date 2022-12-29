@@ -1,0 +1,37 @@
+﻿@using Article_Entities
+
+@model Note
+
+@{
+    User usr = null;
+    if (Session["login"] != null)
+    {
+        usr = (User)Session["login"];
+    }
+}
+
+
+<div class="media-body">
+    <div>
+        <div class="col-md-11">
+            <h4><b>@Model.User.Username</b></h4>
+            <h5>@Model.Title</h5>
+            <span id="text_@Model.Id" contenteditable="false">@Model.Text</span>
+            @*<div>
+                @if (usr != null && usr.Id == Model.User.Id)
+                {
+                    <span>
+                        <button type="button" class="btn btn-xs btn-primary" data-edit='false' onclick="editComment(this,'update',@Model.Id,text_@Model.Id)">Edit</button>
+                        <button type="button" class="btn btn-primary btn-xs" onclick="editComment(this,'delete',@Model.Id,text_@Model.Id)">Delete</button>
+                    </span>
+                }
+                <small class="pull-right">
+                    <span> @Model.UpdateDate</span>
+                </small>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+

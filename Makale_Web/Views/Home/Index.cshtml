@@ -59,17 +59,14 @@
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
-                                <h4>
-                                    <a href="#">@item.Title</a>
-                                </h4>
+                                 <a  data-target="#modal2" data-toggle="modal" data-noteId="@item.Id"> <h4>@item.Title</h4></a>
                                 <h6 class="text-right"><span class="glyphicon glyphicon-user" style="margin-right:0.3rem"></span>@item.User.Name <br /><span class="glyphicon glyphicon-time">@item.UpdateDate.ToString("dd.MM.yy HH:mm")</span></h6>
 
                                 @if (!string.IsNullOrEmpty(item.Text) && item.Text.Length > 40)
                                 {
-                                    <p>
-                                        @item.Text.Substring(0, 40)...
-                                        <a href="#" class="btn btn-default btn-xs bottom-right">Show All</a>
-                                    </p>
+                                    <div>
+                                        <p>@item.Text.Substring(0, 40)...<button class="btn btn-default btn-xs " data-target="#modal2" data-toggle="modal" data-noteId="@item.Id">Show All</button></p>
+                                    </div>
                                 }
                                 else
                                 {
@@ -85,7 +82,7 @@
                                 <p class="pull-right"><button class="btn btn-primary btn-xs " data-target="#modal1" data-toggle="modal" data-noteId="@item.Id"><span class="glyphicon glyphicon-comment" style="margin-right:0.3rem"></span>Comments</button></p>
                                 <p>
                                     <button class="btn btn-primary btn-xs" data-noteId="@item.Id" data-like="false">
-                                        <span class="glyphicon glyphicon-heart-empty like-heart" style="margin-right:0.3rem" data-like="false"></span>
+                                        <span class="glyphicon glyphicon-heart-empty like-heart" style="margin-right:0.3rem"></span>
                                         <span class="likenumber"> @item.LikeNumber</span>
                                     </button>
                                 </p>
@@ -102,10 +99,22 @@
     @Html.Partial("_PartialPageFooter")
 }
 @_CustomHelpers.Modal("modal1", "Comments")
+@_CustomHelpers.Modal("modal2", "Note")
 
 @*Script runs after the modal has opened*@
 
 <script>
+
+
+    $(function () {
+        $('#modal2').on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            noteId = button.data("noteid");
+            console.log(button.text);
+            $('#modal2_body').load("/Note/ShowNote/" + noteId);
+        });
+    });
+
     var noteId = -1;
 
     $(function () {

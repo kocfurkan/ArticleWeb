@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Article_Web.Filters;
 
 namespace Article_Web.Controllers
 {
+	[OnExceptionFilter]
 	public class HomeController : Controller
 	{
 		NoteBL noteBl = new NoteBL();
@@ -23,9 +25,9 @@ namespace Article_Web.Controllers
 			//test.DeleteTest();
 			//test.InsertComment();
 
-			return View(noteBl.ReadNotes().OrderByDescending(x => x.UpdateDate).ToList());
+			return View(noteBl.ReadNotes().Where(x=>x.Draft ==false).OrderByDescending(x => x.UpdateDate).ToList());
 		}
-
+	
 		public ActionResult Category(int? Id)
 		{
 			if (Id == null)
@@ -40,7 +42,7 @@ namespace Article_Web.Controllers
 				return HttpNotFound();
 			}
 
-			return View("Index", category.Notes);
+			return View("Index", category.Notes.Where(x=>x.Draft==false));
 		}
 
 		public ActionResult MostLiked()
@@ -122,7 +124,6 @@ namespace Article_Web.Controllers
 
 			return View();
 		}
-
 		public ActionResult ActivateUserFailed()
 		{
 			List<string> errors = null;
@@ -134,17 +135,19 @@ namespace Article_Web.Controllers
 			return View(errors);
 		}
 
+		[AuthFilter]
 		public ActionResult ProfilePage()
 		{
 			User usr = (User)Session["login"];
 			return View(usr);
 		}
-
+		[AuthFilter]
 		public ActionResult ProfileEdit()
 		{
 			User usr = (User)Session["login"];
 			return View(usr);
 		}
+		[AuthFilter]
 		[HttpPost]
 		public ActionResult ProfileEdit(User usr, HttpPostedFileBase Avatar)
 		{
@@ -168,7 +171,7 @@ namespace Article_Web.Controllers
 			}
 			return View(usr);
 		}
-
+		[AuthFilter]
 		public ActionResult ProfileDelete()
 		{
 
@@ -179,6 +182,10 @@ namespace Article_Web.Controllers
 
 			return RedirectToAction("Index");
 		}
-
+        public ActionResult PageNotFound()
+        {
+			//Add Tempdata
+            return View();
+        }
 	}
 }

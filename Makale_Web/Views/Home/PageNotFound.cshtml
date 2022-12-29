@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "404";
+}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            @Html.Partial("PartialPageCategories")
+        </div>
+        <div class="col-md-9">
+            @{ Exception ex = null;
+                if (TempData["Error"] != null)
+                {
+                    ex = TempData["Error"] as Exception;
+                }
+            }
+            <h2>404 Not Found</h2>
+            @if (ex != null)
+            {
+                <p>@ex.Message</p>
+            }
+            <a href="/Home/Index">Go Back</a>
+            @_CustomHelpers.LinkButton("Index", "/Home/Index", "", "", "", "")
+        </div>
+
+
+    </div>
+
+</div>
+

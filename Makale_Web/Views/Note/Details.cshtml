@@ -7,7 +7,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
             <div>
                 <h2>Details</h2>
                 <hr />
@@ -78,8 +77,13 @@
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new{@class="btn btn-primary"}) |
-                @Html.ActionLink("Back to List", "Index","", new { @class = "btn btn-primary" })
+                @{ User usr = (User)Session["login"];}
+                @if (usr != null && Model.User.Id == usr.Id)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" } ); 
+                }
+                
+                @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-primary" })
             </p>
 
         </div>

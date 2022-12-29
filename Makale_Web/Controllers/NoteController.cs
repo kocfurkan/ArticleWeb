@@ -9,18 +9,31 @@ using System.Web.Mvc;
 using Article_BLL;
 using Article_Entities;
 using Article_Web.Data;
+using Article_Web.Filters;
 using Article_Web.Models;
 
 namespace Article_Web.Controllers
 {
+	
 	public class NoteController : Controller
 	{
 		NoteBL db = new NoteBL();
 		CategoryBL categoryBl = new CategoryBL();
 		LikeBL likeBL = new LikeBL();
 
+		[AuthFilter]
+		public ActionResult ShowNote(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+			}
+			NoteBL noteBl = new NoteBL();
+			Note note = noteBl.GetNoteById(id.Value);
 
-		// GET: Note
+			return PartialView("_PartialPageNote", note);
+		}
+		[AuthFilter]
 		public ActionResult Index()
 		{
 			var notes = db.ReadNotesQueryable().Include(n => n.Category);
@@ -32,6 +45,7 @@ namespace Article_Web.Controllers
 
 			return View(notes.ToList());
 		}
+		[AuthFilter]
 		public ActionResult Likes()
 		{
 
@@ -59,16 +73,14 @@ namespace Article_Web.Controllers
 			return View(note);
 		}
 
-		// GET: Note/Create
+		[AuthFilter]
 		public ActionResult Create()
 		{
 			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title");
 			return View();
 		}
 
-		// POST: Note/Create
-		// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[AuthFilter]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Note note)
@@ -98,7 +110,7 @@ namespace Article_Web.Controllers
 			return View(note);
 		}
 
-		// GET: Note/Edit/5
+		[AuthFilter]
 		public ActionResult Edit(int? id)
 		{
 			if (id == null)
@@ -106,17 +118,20 @@ namespace Article_Web.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			Note note = db.GetNoteById(id);
-			if (note == null)
+			User usr = (User)Session["login"];
+			if (note == null )
 			{
-				return HttpNotFound();
+				return HttpNotFound("Not Allowed");
+			}
+			if( note.User.Id != usr.Id)
+            {
+				return HttpNotFound("Not Allowed");
 			}
 			ViewBag.CategoryId = new SelectList(CacheHelper.Categories(), "Id", "Title", note.CategoryId);
 			return View(note);
 		}
 
-		// POST: Note/Edit/5
-		// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[AuthFilter]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Note note)
@@ -137,7 +152,7 @@ namespace Article_Web.Controllers
 			return View(note);
 		}
 
-		// GET: Note/Delete/5
+		[AuthFilter]
 		public ActionResult Delete(int? id)
 		{
 			if (id == null)
@@ -152,7 +167,7 @@ namespace Article_Web.Controllers
 			return View(note);
 		}
 
-		// POST: Note/Delete/5
+		[AuthFilter]
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(int id)
@@ -167,6 +182,7 @@ namespace Article_Web.Controllers
 			return RedirectToAction("Index");
 		}
 		//same name in ajax post must be given as argument
+		[AuthFilter]
 		[HttpPost]
 		public ActionResult GetLikes(int[] id_arr)
 		{
@@ -181,8 +197,14 @@ namespace Article_Web.Controllers
 		public ActionResult SetLike(int noteId, bool likeArg)
 		{
 			int result = 0;
-			Note note = db.GetNoteById(noteId);
 			User usr = (User)Session["login"];
+			if (usr == null)
+            {
+				return Json(new {error=true, result = -1});
+            }
+			//add if user is nt null
+			Note note = db.GetNoteById(noteId);
+		
 			Like likes = likeBL.FindLike(noteId, usr.Id);
 
 			if (likes != null && likeArg == false)

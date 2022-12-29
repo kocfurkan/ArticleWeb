@@ -1,5 +1,6 @@
 ﻿using Article_BLL;
 using Article_Entities;
+using Article_Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Article_Web.Controllers
 
 			return PartialView("_PartialPageComments", note.Comments);
 		}
+		[AuthFilter]
 		[HttpPost]
 		public ActionResult Edit(int? id, string text)
 		{
@@ -47,6 +49,7 @@ namespace Article_Web.Controllers
 				return Json(new { result = false }, JsonRequestBehavior.AllowGet);
 			}
 		}
+		[AuthFilter]
 		public ActionResult Delete(int? id)
 		{
 			if (id == null)
@@ -64,6 +67,7 @@ namespace Article_Web.Controllers
 			}
 			return Json(new { result = false }, JsonRequestBehavior.AllowGet);
 		}
+		[AuthFilter]
 		public ActionResult Create(Comment comment, int? noteId)
 		{
 			ModelState.Remove("UpdatedBy");
