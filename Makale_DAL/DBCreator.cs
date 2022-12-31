@@ -17,7 +17,7 @@ namespace Article_DAL
             {
                 Name = "Furkan",
                 Surname = "Koc",
-                Email = "furkankoc17@gmail.com",
+                Email = "furkab@mail.com",
                 Password = "1234",
                 Active = true,
                 Admin = true,
