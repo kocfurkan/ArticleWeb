@@ -35,14 +35,9 @@ namespace Article_Web.Controllers
 				return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
 			}
 
-			CategoryBL categoryBL = new CategoryBL();
-			Category category = categoryBL.GetCategory(Id.Value);
-			if (category == null)
-			{
-				return HttpNotFound();
-			}
+			List<Note> notes = noteBl.ReadNotesQueryable().Where(x=>x.Draft ==false && x.CategoryId==Id.Value).ToList();
 
-			return View("Index", category.Notes.Where(x=>x.Draft==false));
+			return View("Index", notes);
 		}
 
 		public ActionResult MostLiked()
